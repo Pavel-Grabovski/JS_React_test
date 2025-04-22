@@ -4,12 +4,23 @@ import Image from './components/Image'
 import logo from './image/images.jfif'
 
 class App extends React.Component{
-  helpText = "Help text!"
+    constructor(props){
+        super(props)
+        this.state = {
+            helpText: "Help text",
+            userData : ""
+        }
+
+        this.inputClick = this.inputClick.bind(this)
+    }
+
   render(){
     return( <div className="name">
       <Header title="Шапка сайта"/>
-      <h1>{this.helpText}</h1>
-      <input placeholder={this.helpText} 
+      <h1>{this.state.helpText}</h1>
+      <h2>{this.state.userData}</h2>
+      <input placeholder={this.state.helpText}
+             onChange={event => this.setState({userData: event.target.value})}
              onClick={this.inputClick}
              onMouseEnter={this.mouseOver}
             >
@@ -19,7 +30,10 @@ class App extends React.Component{
   </div>)
   }
 
-  inputClick(){console.log("Clicked")}
+  inputClick(){
+    this.setState({helpText: "Change"})
+    console.log("Change")
+}
   
   mouseOver(){console.log("Clicked")}
 }
